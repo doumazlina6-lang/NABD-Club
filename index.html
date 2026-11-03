@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NABD — Better Care, Brighter Tomorrows | Medical Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --bg:#F8F5FD; --bg2:#EFEAF9; --card:#FFFFFF; --deep:#231D3A; --deep2:#2E274E;
+  --muted:#726B8E; --muted2:#9A92AF; --lav:#E9E1F7; --lav2:#D9CFF2; --lav3:#C5B3EE;
+  --purple:#8B76C8; --purple2:#A99AD8; --accent:#7C6BB0; --pink:#F6E9F3; --mint:#E6F2ED;
+  --line:#E7E0F3; --shadow:0 18px 40px rgba(90,72,150,.10); --shadow2:0 10px 28px rgba(90,72,150,.08);
+  --radius:28px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--deep);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none}
+img{display:block;max-width:100%}
+.container{width:min(1180px,92%);margin:0 auto}
+/* blobs */
+.blob{position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}
+.blob1{width:520px;height:520px;background:#EDE7FA;right:-120px;top:110px}
+.blob2{width:340px;height:340px;background:#F3E6F2;left:-100px;top:560px;opacity:.8}
+.blob3{width:220px;height:220px;background:#E2D8F5;right:8%;top:820px;opacity:.6}
+
+/* HEADER */
+header{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1180px,94%);z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.9);box-shadow:0 8px 30px rgba(80,60,140,.08);border-radius:999px;padding:8px 10px 8px 8px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.logo b{font-family:Jost,sans-serif;letter-spacing:.32em;font-weight:500;font-size:19px;line-height:1}
+.logo span{display:block;letter-spacing:.18em;font-size:8.5px;font-weight:700;color:var(--muted);margin-top:3px}
+nav.desktop{display:flex;gap:4px;background:#F4F0FC;padding:5px;border-radius:999px}
+nav.desktop a{font-size:13.5px;font-weight:700;padding:8px 16px;border-radius:999px;color:#5E567E}
+nav.desktop a.active,nav.desktop a:hover{background:var(--deep);color:#fff}
+.head-actions{display:flex;align-items:center;gap:8px}
+.pill-live{display:flex;align-items:center;gap:7px;background:#EFE9FF;color:#5B4A8A;font-size:12px;font-weight:800;padding:8px 12px;border-radius:999px}
+.dot{width:8px;height:8px;background:#7ED3A6;border-radius:50%;box-shadow:0 0 0 5px #DFF5E9;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.btn{ display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:14px;padding:12px 20px;border-radius:999px;transition:.25s;white-space:nowrap}
+.btn-dark{background:var(--deep);color:#fff;box-shadow:0 10px 20px rgba(35,29,58,.22)}
+.btn-dark:hover{background:#3A315E;transform:translateY(-1px)}
+.btn-light{background:#fff;color:var(--deep);border:1px solid var(--line);box-shadow:var(--shadow2)}
+.btn-purple{background:var(--purple);color:#fff}
+.btn-sm{padding:10px 16px;font-size:13px}
+.hamburger{display:none;width:42px;height:42px;border-radius:50%;background:var(--deep);color:#fff;align-items:center;justify-content:center;font-size:18px}
+.mobile-menu{display:none;position:fixed;top:82px;left:50%;transform:translateX(-50%);width:92%;background:#fff;border-radius:22px;box-shadow:var(--shadow);padding:14px;z-index:49}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:flex;justify-content:space-between;padding:13px 14px;border-radius:14px;font-weight:700}
+.mobile-menu a:hover{background:#F5F1FD}
+
+/* HERO */
+.hero{padding:132px 0 28px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:7px 8px 7px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#6A5E96;box-shadow:var(--shadow2)}
+.eyebrow i{color:var(--purple)}
+.eyebrow em{font-style:normal;background:var(--lav);padding:4px 9px;border-radius:999px;letter-spacing:0;text-transform:none}
+.hero h1{font-family:Jost,sans-serif;font-weight:300;font-size:clamp(52px,7vw,86px);line-height:.95;letter-spacing:.08em;margin:18px 0 6px}
+.hero h1 b{font-weight:600}
+.hero h1 span{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;letter-spacing:0;text-transform:none;font-size:.92em;color:#7A68A8}
+.hero p.lead{font-size:17px;color:var(--muted);font-weight:600;max-width:560px;margin-top:14px}
+.hero p.lead strong{color:var(--deep)}
+.ecg-line{margin:20px 0 4px;max-width:540px}
+.ecg-line svg{width:100%;height:36px;overflow:visible}
+.ecg-path{stroke:#7B6BB3;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 3s ease forwards infinite alternate}
+@keyframes draw{to{stroke-dashoffset:0}}
+.tagline{letter-spacing:.42em;font-size:11px;font-weight:800;color:#8A82A3;text-transform:uppercase;line-height:2}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.hero-cta .btn{padding:14px 22px}
+.social-mini{display:flex;align-items:center;gap:10px;margin-top:20px}
+.social-mini p{font-size:13px;font-weight:700;color:var(--muted)}
+.soc-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--line);font-size:17px;transition:.2s;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+.soc-icon:hover{transform:translateY(-3px);color:#fff}
+.soc-icon.ig:hover{background:linear-gradient(45deg,#F9CE34,#EE2A7B,#6228D7)}
+.soc-icon.fb:hover{background:#1877F2}
+.soc-icon.tt:hover{background:#111}
+.stats{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.stat{background:#fff;border:1px solid #EFEAF8;border-radius:20px;padding:12px 16px;min-width:110px;box-shadow:var(--shadow2)}
+.stat b{font-family:Jost,sans-serif;font-size:22px;line-height:1}
+.stat span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--muted2);margin-top:4px}
+
+/* right visual */
+.visual{position:relative}
+.logo-card{background:linear-gradient(180deg,#F1ECFB,#E9E1F7);border:1px solid #fff;border-radius:38px;padding:18px 18px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.logo-card::before{content:"";position:absolute;width:280px;height:280px;background:#fff;opacity:.35;border-radius:50%;right:-70px;top:-80px}
+.main-logo{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:50%;border:8px solid rgba(255,255,255,.75);box-shadow:0 18px 35px rgba(90,70,150,.15);position:relative;z-index:1}
+.leaf-badge{position:absolute;top:28px;right:28px;z-index:2;background:#fff;border-radius:999px;padding:8px 12px;display:flex;gap:7px;align-items:center;font-size:12px;font-weight:800;box-shadow:var(--shadow2)}
+.leaf-badge i{color:#8B76C8}
+.pulse-card{margin-top:14px;background:#fff;border-radius:24px;padding:14px 14px 12px;box-shadow:var(--shadow2);border:1px solid #F0EAF9;position:relative;z-index:2}
+.pulse-top{display:flex;justify-content:space-between;align-items:center}
+.pulse-top label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.heart-wrap{display:flex;align-items:center;gap:10px}
+.heart{width:42px;height:42px;border-radius:50%;background:#FCE8F1;display:grid;place-items:center;color:#E85D8A;font-size:19px}
+.heart.beat{animation:beat .5s ease}
+@keyframes beat{0%{transform:scale(1)}30%{transform:scale(1.22)}100%{transform:scale(1)}}
+.bpm{font-family:Jost,sans-serif;font-size:28px;font-weight:600;line-height:1}
+.bpm small{font-size:11px;letter-spacing:.1em;color:var(--muted);font-weight:700}
+#ecgCanvas{width:100%;height:54px;display:block;margin:8px 0 6px;background:#FBF9FF;border-radius:12px}
+.pulse-controls{display:flex;align-items:center;gap:10px}
+.pulse-controls input[type=range]{flex:1;accent-color:#8B76C8}
+.play-btn{width:36px;height:36px;border-radius:50%;background:var(--deep);color:#fff;display:grid;place-items:center;font-size:13px;flex-shrink:0}
+.pulse-controls span{font-size:12px;font-weight:800;color:var(--muted);min-width:62px;text-align:right}
+.floating-chip{position:absolute;background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:10px 12px;display:flex;gap:10px;align-items:center;z-index:3;border:1px solid #F0EAF8}
+.floating-chip i{width:36px;height:36px;border-radius:12px;display:grid;place-items:center}
+.fc1{left:-14px;top:52%}.fc1 i{background:#EDE8FF;color:#7A68B8}
+.fc2{right:-6px;bottom:118px}.fc2 i{background:#E6F3EC;color:#4A9A76}
+.floating-chip b{font-size:13px;line-height:1.1;display:block}
+.floating-chip span{font-size:11px;color:var(--muted);font-weight:700}
+
+/* sections */
+section{padding:34px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:18px;flex-wrap:wrap}
+.sec-head h2{font-family:Jost,sans-serif;font-weight:400;font-size:clamp(30px,4vw,44px);line-height:1;letter-spacing:.02em}
+.sec-head h2 i{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;color:#8473B8}
+.sec-head p{color:var(--muted);font-weight:600;font-size:14.5px;max-width:520px}
+.kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:800;color:#8B7CC0;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.kicker::before{content:"";width:26px;height:2px;background:#B7A6E6;border-radius:2px}
+
+/* SOCIAL */
+.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scard{border-radius:30px;padding:22px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.8);transition:.25s}
+.scard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.scard.ig{background:linear-gradient(160deg,#FFF4E8,#FDE8F3 55%,#EDE7FF)}
+.scard.fb{background:linear-gradient(160deg,#EAF2FF,#EDEAFF)}
+.scard.tt{background:linear-gradient(160deg,#EDEAFF,#E6F2F5 60%,#FFF0F5)}
+.scard-top{display:flex;justify-content:space-between;align-items:flex-start}
+.platform-icon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;color:#fff;font-size:25px;box-shadow:0 12px 22px rgba(0,0,0,.14)}
+.ig .platform-icon{background:linear-gradient(45deg,#FEDA75,#FA7E1E,#D62976,#962FBF)}
+.fb .platform-icon{background:#1877F2}
+.tt .platform-icon{background:#111}
+.live-tag{font-size:11px;font-weight:800;background:#fff;padding:6px 9px;border-radius:999px}
+.scard h3{font-family:Jost,sans-serif;font-size:22px;margin-top:16px}
+.handle{font-weight:800;color:#655A8A;font-size:14px}
+.scard p.desc{font-size:13.5px;color:#6F6890;font-weight:600;margin:8px 0 14px;min-height:62px}
+.scard-meta{display:flex;gap:8px;margin-bottom:16px}
+.scard-meta div{background:rgba(255,255,255,.75);backdrop-filter:blur(4px);border-radius:14px;padding:8px 10px;flex:1;text-align:center}
+.scard-meta b{font-size:14px;display:block;line-height:1}
+.scard-meta span{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.scard-actions{display:flex;gap:8px}
+.scard-actions .btn{flex:1;padding:11px 10px;font-size:13px}
+.copy-btn{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;flex-shrink:0}
+.handle-copy{margin-top:12px;background:rgba(255,255,255,.7);border:1px dashed #CFC2EC;border-radius:999px;padding:7px 7px 7px 12px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;color:#5D5380;overflow:hidden}
+.handle-copy button{background:var(--deep);color:#fff;font-size:11px;font-weight:800;padding:6px 10px;border-radius:999px}
+
+/* ABOUT / ACTIVITIES */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.about-card{background:#fff;border-radius:30px;padding:24px;border:1px solid #EFEAF7;box-shadow:var(--shadow2)}
+.about-card img{width:100%;height:210px;object-fit:cover;border-radius:20px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{padding:8px 12px;border-radius:999px;background:#F3EFFC;font-size:12.5px;font-weight:800;color:#5B4E86;cursor:pointer;border:1px solid transparent}
+.chip.active{background:var(--deep);color:#fff}
+.act-list{display:grid;gap:10px}
+.act{display:flex;gap:14px;background:#fff;border:1px solid #EFEAF7;border-radius:20px;padding:14px;align-items:center;transition:.2s;cursor:pointer}
+.act:hover{border-color:#D9CFF2;transform:translateX(3px)}
+.act i{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:19px;flex-shrink:0}
+.act b{font-size:15px}
+.act p{font-size:13px;color:var(--muted);font-weight:600;line-height:1.4}
+.act time{margin-left:auto;font-size:11px;font-weight:800;background:#F4F0FF;padding:6px 8px;border-radius:999px;white-space:nowrap}
+
+/* EVENTS */
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{padding:9px 15px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:800;font-size:13px}
+.filter-btn.active{background:var(--deep);color:#fff;border-color:var(--deep)}
+.events{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.event{background:#fff;border-radius:26px;overflow:hidden;border:1px solid #EFEAF7;box-shadow:var(--shadow2)}
+.event img{width:100%;height:150px;object-fit:cover}
+.event-body{padding:16px}
+.event-body h4{font-family:Jost,sans-serif;font-size:18px;line-height:1.2}
+.event-body p{font-size:13px;color:var(--muted);font-weight:600;margin:6px 0 12px}
+.event-foot{display:flex;justify-content:space-between;align-items:center}
+.event-foot span{font-size:12px;font-weight:800;color:#7A6DB0}
+.save-btn{font-size:12.5px;font-weight:800;padding:8px 12px;border-radius:999px;background:#F1ECFD;color:#4E427A}
+.save-btn.saved{background:#231D3A;color:#fff}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;align-items:start}
+.contact-info{background:var(--deep);color:#fff;border-radius:30px;padding:26px;position:relative;overflow:hidden}
+.contact-info::after{content:"";position:absolute;width:220px;height:220px;background:#8B76C8;opacity:.25;border-radius:50%;right:-60px;bottom:-70px}
+.contact-info h3{font-family:Jost,sans-serif;font-weight:400;font-size:28px;line-height:1.1}
+.contact-info h3 i{font-family:'Cormorant Garamond',serif;color:#CFC2F5}
+.contact-info p{color:#CFC9E6;font-size:14px;font-weight:600;margin:10px 0 18px}
+.info-row{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:16px;margin-bottom:10px;position:relative;z-index:1}
+.info-row i{width:38px;height:38px;border-radius:12px;background:#fff;color:var(--deep);display:grid;place-items:center}
+.info-row b{font-size:13.5px;display:block;line-height:1.2}
+.info-row span{font-size:12px;color:#C9C2E3;font-weight:600}
+.quick-social{display:flex;gap:8px;margin-top:16px;position:relative;z-index:1}
+.quick-social a{flex:1;text-align:center;background:#fff;color:var(--deep);font-weight:800;font-size:13px;padding:11px;border-radius:999px}
+.form-card{background:#fff;border-radius:30px;padding:24px;border:1px solid #EFEAF7;box-shadow:var(--shadow)}
+.form-card h3{font-family:Jost,sans-serif;font-size:22px}
+.form-card>p{font-size:13.5px;color:var(--muted);font-weight:600;margin-bottom:16px}
+.topic-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.topic{padding:8px 12px;border-radius:999px;background:#F6F3FD;border:1px solid #E7E0F5;font-size:12.5px;font-weight:800;cursor:pointer}
+.topic.active{background:#EDE7FF;border-color:#B8A6E6;color:#3E326E}
+.field{margin-bottom:14px}
+.field label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:#6B628E;display:flex;justify-content:space-between;margin-bottom:6px}
+.field label span{letter-spacing:0;text-transform:none;color:#B0A8C6}
+.field input,.field textarea{width:100%;border:1.5px solid #E9E2F6;background:#FCFBFF;border-radius:16px;padding:13px 14px;font-family:inherit;font-weight:600;font-size:14px;color:var(--deep);outline:none;transition:.2s;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:#A99AD8;background:#fff;box-shadow:0 0 0 4px #EFEAFF}
+.field.error input,.field.error textarea{border-color:#F2A8BB;background:#FFF7F9}
+.err{font-size:12px;color:#D14D76;font-weight:700;margin-top:5px;display:none}
+.field.error .err{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.submit-btn{width:100%;padding:15px;border-radius:999px;background:var(--deep);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
+.submit-btn:hover{background:#3B3262}
+.form-note{font-size:12px;color:var(--muted2);font-weight:600;text-align:center;margin-top:10px}
+.success{display:none;text-align:center;padding:18px 6px}
+.success.show{display:block}
+.success-icon{width:68px;height:68px;border-radius:50%;background:#E6F4EC;color:#3A9A6B;display:grid;place-items:center;font-size:28px;margin:0 auto 12px}
+.faq{margin-top:16px;display:grid;gap:10px}
+.faq-item{background:#fff;border:1px solid #EFEAF7;border-radius:18px;overflow:hidden}
+.faq-q{width:100%;background:none;display:flex;justify-content:space-between;align-items:center;padding:16px 18px;font-weight:800;font-size:14.5px;text-align:left}
+.faq-a{max-height:0;overflow:hidden;transition:.35s;padding:0 18px;color:var(--muted);font-weight:600;font-size:13.5px}
+.faq-item.open .faq-a{max-height:120px;padding-bottom:16px}
+.faq-item.open .faq-q i{transform:rotate(45deg)}
+.faq-q i{transition:.3s}
+
+/* footer */
+footer{margin:20px 0 24px}
+.footer-inner{background:#fff;border:1px solid var(--line);border-radius:28px;padding:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow2)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,80px);background:var(--deep);color:#fff;padding:12px 18px;border-radius:999px;font-weight:800;font-size:13.5px;box-shadow:0 16px 30px rgba(0,0,0,.22);z-index:99;transition:.35s;display:flex;gap:8px;align-items:center;opacity:0}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+@media(max-width:920px){
+  nav.desktop,.pill-live{display:none}
+  .hamburger{display:grid}
+  .hero-grid,.about-grid,.contact-wrap{grid-template-columns:1fr}
+  .social-grid,.events{grid-template-columns:1fr 1fr}
+  .fc1{left:6px}.fc2{right:6px}
+}
+@media(max-width:600px){
+  .social-grid,.events,.form-row{grid-template-columns:1fr}
+  .hero{padding-top:110px}
+  .stats{gap:8px}.stat{flex:1;min-width:0;text-align:center}
+  .head-actions .btn{display:none}
+  .floating-chip{display:none}
+}
+</style>
+</head>
+<body>
+<div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div>
+
+<header>
+  <a href="#home" class="logo">
+    <img src="https://www.designarena.ai/u/a41306ab-d5fc-4fb4-9074-7d7149fd5d5e" alt="NABD Logo">
+    <div><b>N A B D</b><span>BETTER CARE • BRIGHTER TOMORROWS</span></div>
+  </a>
+  <nav class="desktop" id="mainNav">
+    <a href="#home" class="active">Home</a>
+    <a href="#social">Socials</a>
+    <a href="#club">The Club</a>
+    <a href="#events">Moments</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="head-actions">
+    <div class="pill-live"><span class="dot"></span> Club is online</div>
+    <a href="#contact" class="btn btn-dark btn-sm">Join NABD <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px"></i></a>
+    <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home <span>→</span></a><a href="#social">Socials <span>→</span></a><a href="#club">The Club <span>→</span></a><a href="#events">Moments <span>→</span></a><a href="#contact">Contact <span>→</span></a>
+</div>
+
+<main class="container">
+  <!-- HERO -->
+  <div class="hero" id="home">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><i class="fa-solid fa-heart-pulse"></i> Medical Club <em>Est. for students, by students</em></div>
+        <h1>N A <b>B D</b><br><span>better care,</span><br>brighter tomorrows.</h1>
+        <div class="ecg-line">
+          <svg viewBox="0 0 540 36" fill="none"><path class="ecg-path" d="M0 18 H210 L222 18 L230 8 L238 28 L246 2 L256 34 L264 18 L272 12 L280 22 L288 18 H540"/></svg>
+        </div>
+        <div class="tagline">Better Care &nbsp;•&nbsp; Brighter Tomorrows</div>
+        <p class="lead">Welcome to <strong>NABD — نبض</strong>, a soft place for medical students to learn, serve, and grow together. Find us in one tap, follow our journey, and say hello anytime.</p>
+        <div class="hero-cta">
+          <a href="#social" class="btn btn-dark">Find our socials <i class="fa-brands fa-instagram"></i></a>
+          <a href="#contact" class="btn btn-light">✉️ Send an inquiry</a>
+        </div>
+        <div class="social-mini">
+          <a class="soc-icon ig" href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="soc-icon fb" href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="soc-icon tt" href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <p><b id="followerTotal">18.4k</b> friends already<br>follow NABD</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><b><span class="counter" data-target="1240">0</span>+</b><span>Members</span></div>
+          <div class="stat"><b><span class="counter" data-target="86">0</span></b><span>Workshops</span></div>
+          <div class="stat"><b><span class="counter" data-target="42">0</span></b><span>Campaigns</span></div>
+          <div class="stat"><b>4.9 ★</b><span>Community</span></div>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="logo-card">
+          <div class="leaf-badge"><i class="fa-solid fa-leaf"></i> Soft • Classy • Caring</div>
+          <img class="main-logo" src="https://www.designarena.ai/u/a41306ab-d5fc-4fb4-9074-7d7149fd5d5e" alt="NABD - Better Care Brighter Tomorrows">
+          <div class="pulse-card">
+            <div class="pulse-top">
+              <label>● Live Pulse — Try it</label>
+              <div class="heart-wrap"><div class="heart" id="heartIcon"><i class="fa-solid fa-heart"></i></div><div class="bpm"><span id="bpmVal">72</span> <small>BPM</small></div></div>
+            </div>
+            <canvas id="ecgCanvas" width="600" height="70"></canvas>
+            <div class="pulse-controls">
+              <button class="play-btn" id="playBtn"><i class="fa-solid fa-pause"></i></button>
+              <input type="range" id="bpmRange" min="48" max="122" value="72">
+              <span id="bpmLabel">Resting • 72</span>
+            </div>
+          </div>
+        </div>
+        <div class="floating-chip fc1"><i class="fa-solid fa-stethoscope"></i><div><b>Weekly Skills Lab</b><span>Every Thursday</span></div></div>
+        <div class="floating-chip fc2"><i class="fa-solid fa-hands-holding-heart"></i><div><b>Community First</b><span>Volunteering</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIALS -->
+  <section id="social">
+    <div class="sec-head">
+      <div><div class="kicker">Find us everywhere</div><h2>One club, <i>three homes</i> online</h2></div>
+      <p>Tap a card to visit us, copy our handle to share with a friend, or follow — we post study tips, event recaps, and gentle health reminders.</p>
+    </div>
+    <div class="social-grid">
+      <!-- IG -->
+      <article class="scard ig">
+        <div class="scard-top"><div class="platform-icon"><i class="fa-brands fa-instagram"></i></div><span class="live-tag">● Most active</span></div>
+        <h3>Instagram</h3><div class="handle">@nabd.medical.club</div>
+        <p class="desc">Daily reels, case snippets, workshop stories &amp; behind-the-scenes from our medical family.</p>
+        <div class="scard-meta"><div><b class="count-num" data-base="8420">8,420</b><span>Followers</span></div><div><b>312</b><span>Posts</span></div><div><b>Daily</b><span>Stories</span></div></div>
+        <div class="scard-actions"><a href="https://instagram.com" target="_blank" class="btn btn-dark follow-btn">Follow</a><button class="copy-btn" data-copy="https://instagram.com/nabd.medical.club" title="Copy link"><i class="fa-regular fa-copy"></i></button></div>
+        <div class="handle-copy"><span>instagram.com/nabd.medical.club</span><button data-copy="https://instagram.com/nabd.medical.club">Copy</button></div>
+      </article>
+      <!-- FB -->
+      <article class="scard fb">
+        <div class="scard-top"><div class="platform-icon"><i class="fa-brands fa-facebook-f"></i></div><span class="live-tag">Events &amp; News</span></div>
+        <h3>Facebook</h3><div class="handle">NABD Medical Club</div>
+        <p class="desc">Official announcements, long-form health awareness posts, albums, and live Q&amp;A sessions.</p>
+        <div class="scard-meta"><div><b class="count-num" data-base="6180">6,180</b><span>Followers</span></div><div><b>94</b><span>Events</span></div><div><b>Weekly</b><span>Lives</span></div></div>
+        <div class="scard-actions"><a href="https://facebook.com" target="_blank" class="btn btn-dark follow-btn">Follow</a><button class="copy-btn" data-copy="https://facebook.com/NABDMedicalClub" title="Copy link"><i class="fa-regular fa-copy"></i></button></div>
+        <div class="handle-copy"><span>facebook.com/NABDMedicalClub</span><button data-copy="https://facebook.com/NABDMedicalClub">Copy</button></div>
+      </article>
+      <!-- TT -->
+      <article class="scard tt">
+        <div class="scard-top"><div class="platform-icon"><i class="fa-brands fa-tiktok"></i></div><span class="live-tag">✦ Trending</span></div>
+        <h3>TikTok</h3><div class="handle">@nabd.medical</div>
+        <p class="desc">60-second medicine, myth-busting, study-with-me, and joyful moments from hospital corridors.</p>
+        <div class="scard-meta"><div><b class="count-num" data-base="3840">3,840</b><span>Followers</span></div><div><b>128</b><span>Videos</span></div><div><b>210k</b><span>Views</span></div></div>
+        <div class="scard-actions"><a href="https://tiktok.com" target="_blank" class="btn btn-dark follow-btn">Follow</a><button class="copy-btn" data-copy="https://tiktok.com/@nabd.medical" title="Copy link"><i class="fa-regular fa-copy"></i></button></div>
+        <div class="handle-copy"><span>tiktok.com/@nabd.medical</span><button data-copy="https://tiktok.com/@nabd.medical">Copy</button></div>
+      </article>
+    </div>
+    <p style="text-align:center;margin-top:14px;font-size:13px;font-weight:700;color:#8A82A6">💜 Tip: Click <b>Copy</b> on any card to share NABD with your classmates instantly.</p>
+  </section>
+
+  <!-- CLUB -->
+  <section id="club">
+    <div class="sec-head">
+      <div><div class="kicker">Inside NABD</div><h2>What makes our <i>pulse</i> strong</h2></div>
+      <div class="filters" id="actFilters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="learn">Learning</button>
+        <button class="filter-btn" data-filter="serve">Serving</button>
+        <button class="filter-btn" data-filter="create">Creating</button>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&auto=format&fit=crop&q=70" alt="Medical workshop">
+        <h3 style="font-family:Jost;font-size:22px;margin-top:16px">A gentle space to become better doctors</h3>
+        <p style="font-size:14px;color:var(--muted);font-weight:600;margin-top:6px">We believe excellence grows with kindness. NABD blends clinical skills, research curiosity, and community service — in a calm, elegant, and welcoming atmosphere for every medical student.</p>
+        <div class="chips" id="interestChips">
+          <span class="chip active">🩺 Clinical Skills</span><span class="chip">🔬 Research</span><span class="chip">🤍 Volunteering</span><span class="chip">🎤 Public Health</span><span class="chip">📚 Study Together</span>
+        </div>
+        <p id="chipMsg" style="font-size:12.5px;font-weight:800;color:#7A68B0;margin-top:10px">Selected: Clinical Skills — we'll tailor updates for you.</p>
+      </div>
+      <div class="act-list" id="actList">
+        <div class="act" data-cat="learn"><i style="background:#EDE8FF;color:#6D5BB5" class="fa-solid fa-book-medical"></i><div><b>Skills &amp; OSCE Workshops</b><p>Hands-on practice with seniors and doctors, step by step.</p></div><time>Thu 5 PM</time></div>
+        <div class="act" data-cat="serve"><i style="background:#E6F2ED;color:#3E8A68" class="fa-solid fa-hands-holding-heart"></i><div><b>Health Awareness Campaigns</b><p>Booths, screenings &amp; school visits across the community.</p></div><time>Monthly</time></div>
+        <div class="act" data-cat="learn"><i style="background:#FFF0E6;color:#C47A2E" class="fa-solid fa-flask"></i><div><b>Research Circle</b><p>From idea to poster — mentors, journal clubs &amp; teamwork.</p></div><time>Tue 6 PM</time></div>
+        <div class="act" data-cat="create"><i style="background:#FDE8F3;color:#C44A82" class="fa-solid fa-video"></i><div><b>Media &amp; Content Team</b><p>We turn medicine into beautiful, simple stories for everyone.</p></div><time>Flexible</time></div>
+        <div class="act" data-cat="serve"><i style="background:#EAF2FF;color:#3A6BC2" class="fa-solid fa-people-group"></i><div><b>Peer Support &amp; Mentoring</b><p>Older students guiding younger hearts — no one studies alone.</p></div><time>Always</time></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section id="events">
+    <div class="sec-head">
+      <div><div class="kicker">Moments to join</div><h2>Upcoming <i>gatherings</i></h2></div>
+      <p>Save your spot with one tap — we’ll reflect it instantly so you can plan your week with NABD.</p>
+    </div>
+    <div class="events" id="eventsGrid"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="sec-head">
+      <div><div class="kicker">We’d love to hear from you</div><h2>Say hello to <i>NABD</i></h2></div>
+      <p>Questions, collaboration ideas, joining requests, or just a kind word — write to us below.</p>
+    </div>
+    <div class="contact-wrap">
+      <div>
+        <div class="contact-info">
+          <h3>Your message<br>matters to <i>our pulse.</i></h3>
+          <p>We reply within 24–48 hours on study days. For urgent event questions, message us faster on Instagram DM.</p>
+          <div class="info-row"><i class="fa-regular fa-envelope"></i><div><b>hello@nabd-club.org</b><span>Email us anytime</span></div></div>
+          <div class="info-row"><i class="fa-solid fa-location-dot"></i><div><b>Faculty of Medicine</b><span>Student Activities Building, Room 12</span></div></div>
+          <div class="info-row"><i class="fa-regular fa-clock"></i><div><b>Sun – Thu • 10 AM – 6 PM</b><span>Office &amp; reply hours</span></div></div>
+          <div class="quick-social">
+            <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            <a href="https://tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+          </div>
+        </div>
+        <div class="faq" id="faq">
+          <div class="faq-item open"><button class="faq-q">How can I join NABD? <i class="fa-solid fa-plus"></i></button><div class="faq-a">Fill the contact form and choose “Joining the club”. We open recruitment each semester and announce it first on Instagram.</div></div>
+          <div class="faq-item"><button class="faq-q">Can non-medical students collaborate? <i class="fa-solid fa-plus"></i></button><div class="faq-a">Yes! Designers, media creators, and health-allied students are warmly welcome for campaigns and content.</div></div>
+          <div class="faq-item"><button class="faq-q">Do you offer certificates? <i class="fa-solid fa-plus"></i></button><div class="faq-a">Active members and volunteers receive verified certificates for workshops and community campaigns.</div></div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div id="formView">
+          <h3>Contact form</h3><p>Fields marked * are required. We keep your details private.</p>
+          <label style="font-size:11px;letter-spacing:.12em;font-weight:800;color:#6B628E">I’M WRITING ABOUT</label>
+          <div class="topic-row" id="topicRow">
+            <button class="topic active" type="button">General inquiry</button>
+            <button class="topic" type="button">Joining the club</button>
+            <button class="topic" type="button">Collaboration</button>
+            <button class="topic" type="button">Event question</button>
+          </div>
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="field" id="fName"><label>Your name * <span>e.g. Layla Ahmed</span></label><input type="text" id="inputName" placeholder="Full name" autocomplete="name"><div class="err">Please enter your name (at least 3 letters).</div></div>
+              <div class="field" id="fEmail"><label>Email address * <span>We’ll reply here</span></label><input type="email" id="inputEmail" placeholder="you@example.com" autocomplete="email"><div class="err">Please enter a valid email address.</div></div>
+            </div>
+            <div class="field" id="fDetails"><label>Details * <span id="charCount">0 / 500</span></label><textarea id="inputDetails" rows="5" maxlength="500" placeholder="Hello NABD, I would love to..."></textarea><div class="err">Please write a few details (at least 10 characters).</div></div>
+            <button type="submit" class="submit-btn" id="submitBtn">Send to NABD <i class="fa-regular fa-paper-plane"></i></button>
+            <p class="form-note">🔒 No spam, ever. Average reply time: <b>1 day</b> • <span id="sentCount">127</span> inquiries answered this semester</p>
+          </form>
+        </div>
+        <div class="success" id="successView">
+          <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+          <h3 style="font-family:Jost;font-size:26px">Thank you, <span id="successName">friend</span>! 💜</h3>
+          <p style="color:var(--muted);font-weight:600;font-size:14px;max-width:420px;margin:8px auto">Your inquiry about <b id="successTopic">General inquiry</b> was received. We’ll reply to <b id="successEmail"></b> very soon.</p>
+          <div style="background:#F6F3FD;border-radius:16px;padding:14px;margin:16px 0;text-align:left"><b style="font-size:13px">Your message preview</b><p id="successPreview" style="font-size:13px;color:#6B628E;font-weight:600;margin-top:4px"></p></div>
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+            <button class="btn btn-dark btn-sm" id="sendAnother">Send another message</button>
+            <a href="#social" class="btn btn-light btn-sm">Follow us meanwhile →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="#home" class="logo"><img src="https://www.designarena.ai/u/a41306ab-d5fc-4fb4-9074-7d7149fd5d5e" alt="NABD"><div><b style="font-size:16px">N A B D</b><span>BETTER CARE • BRIGHTER TOMORROWS</span></div></a>
+      <p style="font-size:13px;font-weight:700;color:var(--muted)">Made with 🤍 by NABD Medical Club • <span id="year"></span></p>
+      <div style="display:flex;gap:8px">
+        <a class="soc-icon ig" href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a class="soc-icon fb" href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+        <a class="soc-icon tt" href="https://tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#home" class="soc-icon" title="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<div class="toast" id="toast"><i class="fa-solid fa-check-circle"></i><span id="toastText">Copied!</span></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+$('#year').textContent=new Date().getFullYear();
+
+// Mobile menu
+const mm=$('#mobileMenu');
+$('#hamburger').onclick=()=>{mm.classList.toggle('open');$('#hamburger').innerHTML=mm.classList.contains('open')?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>'};
+$$('#mobileMenu a').forEach(a=>a.onclick=()=>mm.classList.remove('open'));
+
+// Active nav on scroll
+const secs=['home','social','club','events','contact'];
+window.addEventListener('scroll',()=>{
+  let cur='home';
+  secs.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<160)cur=id});
+  $$('#mainNav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+
+// Counters
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=+e.target.dataset.target;let v=0;const step=Math.ceil(t/50);const iv=setInterval(()=>{v+=step;if(v>=t){v=t;clearInterval(iv)}e.target.textContent=v.toLocaleString()},20);io.unobserve(e.target)}}),{threshold:.6});
+$$('.counter').forEach(c=>io.observe(c));
+
+// Toast
+let toastTimer;
+function toast(msg){$('#toastText').textContent=msg;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),2600)}
+
+// Copy links
+$$('[data-copy]').forEach(btn=>btn.addEventListener('click',async e=>{
+  e.preventDefault();const txt=btn.dataset.copy;
+  try{await navigator.clipboard.writeText(txt)}catch(_){const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}
+  toast('Link copied — share NABD 💜'); btn.innerHTML=btn.tagName==='BUTTON'&&btn.classList.contains('copy-btn')?'<i class="fa-solid fa-check"></i>':'Copied ✓';
+  setTimeout(()=>location.reload,999999); // placeholder never triggers visibly
+  setTimeout(()=>{ if(btn.classList.contains('copy-btn')) btn.innerHTML='<i class="fa-regular fa-copy"></i>'; else if(btn.tagName==='BUTTON') btn.textContent='Copy'; },1800);
+}));
+
+// Follow buttons increment
+$$('.follow-btn').forEach(btn=>{
+  let followed=false;
+  btn.addEventListener('click',e=>{
+    if(!followed){e.preventDefault();followed=true;btn.innerHTML='Following ✓';btn.style.background='#3A9A6B';
+      const card=btn.closest('.scard');const num=card.querySelector('.count-num');let base=+num.dataset.base+1;num.dataset.base=base;num.textContent=base.toLocaleString();
+      toast('You’re following NABD — welcome! 🎉');
+    }
+  });
+});
+
+// Chips
+$$('#interestChips .chip').forEach(ch=>ch.onclick=()=>{$$('#interestChips .chip').forEach(c=>c.classList.remove('active'));ch.classList.add('active');$('#chipMsg').textContent='Selected: '+ch.textContent.trim()+' — we\'ll tailor updates for you.';toast(ch.textContent.trim()+' selected')});
+
+// Activity filter (also controls club list)
+$$('#actFilters .filter-btn').forEach(b=>b.onclick=()=>{
+  $$('#actFilters .filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  const f=b.dataset.filter;
+  $$('#actList .act').forEach(a=>{a.style.display=(f==='all'||a.dataset.cat===f)?'flex':'none'});
+});
+
+// Events data
+const events=[
+ {title:'First Aid Essentials',cat:'Workshop',date:'Thu • May 15 • 5 PM',img:'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=70',desc:'Practical first-aid skills every student should know, with live practice.'},
+ {title:'Health Day at School',cat:'Volunteering',date:'Sat • May 18 • 9 AM',img:'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&auto=format&fit=crop&q=70',desc:'A joyful awareness morning for kids — blood pressure, hygiene & nutrition.'},
+ {title:'Study With NABD',cat:'Community',date:'Sun • May 19 • 7 PM',img:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=70',desc:'Pomodoro rooms, senior tips, and calm music. Bring your notes.'},
+];
+function renderEvents(){
+  $('#eventsGrid').innerHTML=events.map((ev,i)=>`
+   <article class="event"><img src="${ev.img}" alt="${ev.title}">
+   <div class="event-body"><span style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8B76C8">${ev.cat}</span>
+   <h4>${ev.title}</h4><p>${ev.desc}</p>
+   <div class="event-foot"><span>📅 ${ev.date}</span><button class="save-btn" data-i="${i}">Save spot</button></div></div></article>`).join('');
+  $$('.save-btn').forEach(b=>b.onclick=()=>{const saved=b.classList.toggle('saved');b.textContent=saved?'Saved ✓':'Save spot';toast(saved?'Spot saved — see you there!':'Spot removed')});
+}
+renderEvents();
+
+// ECG Canvas
+const canvas=$('#ecgCanvas'),ctx=canvas.getContext('2d');
+let bpm=72,playing=true,phase=0,lastBeat=0;
+function ecgY(x){
+  const t=(x%1); // 0-1 per beat segment
+  // stylized ECG waveform
+  if(t<0.12) return Math.sin(t/0.12*Math.PI)*4;
+  if(t<0.18) return 0;
+  if(t<0.22) return -6;
+  if(t<0.28) return 26; // R peak inverted for canvas coords handling below
+  if(t<0.34) return -8;
+  if(t<0.55) return 0;
+  if(t<0.72) return Math.sin((t-0.55)/0.17*Math.PI)*6;
+  return 0;
+}
+function draw(){
+  const w=canvas.width,h=canvas.height,mid=h/2;
+  ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle='#E9E1F7';ctx.lineWidth=1;
+  for(let gx=0;gx<w;gx+=24){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,h);ctx.stroke()}
+  ctx.beginPath();ctx.strokeStyle='#7C6BB0';ctx.lineWidth=2.4;ctx.lineJoin='round';ctx.lineCap='round';
+  const beatsVisible=3.2, speed=phase;
+  for(let x=0;x<w;x++){
+    const beatPos=((x/w)*beatsVisible + speed) % 1;
+    const yVal=ecgY(beatPos);
+    const y=mid - yVal;
+    x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  if(playing){ phase += (bpm/60) * 0.016 / 1; // advance
+    // heart beat sync approx
+    const now=Date.now();
+    if(now-lastBeat>60000/bpm){lastBeat=now;const hrt=$('#heartIcon');hrt.classList.remove('beat');void hrt.offsetWidth;hrt.classList.add('beat')}
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+const range=$('#bpmRange');
+function updateBPM(){
+  bpm=+range.value;$('#bpmVal').textContent=bpm;
+  let label=bpm<60?'Calm':bpm<80?'Resting':bpm<100?'Active':'Energetic';
+  $('#bpmLabel').textContent=`${label} • ${bpm}`;
+}
+range.addEventListener('input',updateBPM);updateBPM();
+$('#playBtn').onclick=()=>{playing=!playing;$('#playBtn').innerHTML=playing?'<i class="fa-solid fa-pause"></i>':'<i class="fa-solid fa-play"></i>';toast(playing?'Pulse resumed':'Pulse paused')};
+
+// Topics
+let selectedTopic='General inquiry';
+$$('#topicRow .topic').forEach(t=>t.onclick=()=>{$$('#topicRow .topic').forEach(x=>x.classList.remove('active'));t.classList.add('active');selectedTopic=t.textContent.trim()});
+
+// Char count + live validation clear
+const details=$('#inputDetails');
+details.addEventListener('input',()=>{$('#charCount').textContent=`${details.value.length} / 500`;$('#fDetails').classList.remove('error')});
+$('#inputName').addEventListener('input',()=>$('#fName').classList.remove('error'));
+$('#inputEmail').addEventListener('input',()=>$('#fEmail').classList.remove('error'));
+
+// FAQ
+$$('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').onclick=()=>{
+    const open=item.classList.contains('open');
+    $$('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  }
+});
+
+// Form submit
+let sent=127;
+$('#contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=$('#inputName').value.trim();
+  const email=$('#inputEmail').value.trim();
+  const det=details.value.trim();
+  let ok=true;
+  if(name.length<3){$('#fName').classList.add('error');ok=false}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){$('#fEmail').classList.add('error');ok=false}
+  if(det.length<10){$('#fDetails').classList.add('error');ok=false}
+  if(!ok){toast('Please check the highlighted fields');return}
+  const btn=$('#submitBtn');btn.innerHTML='Sending… <i class="fa-solid fa-spinner fa-spin"></i>';btn.disabled=true;
+  setTimeout(()=>{
+    sent++;$('#sentCount').textContent=sent;
+    $('#successName').textContent=name.split(' ')[0];
+    $('#successEmail').textContent=email;
+    $('#successTopic').textContent=selectedTopic;
+    $('#successPreview').textContent='“'+(det.length>140?det.slice(0,140)+'…':det)+'”';
+    $('#formView').style.display='none';$('#successView').classList.add('show');
+    toast('Message sent to NABD 💜');
+    btn.innerHTML='Send to NABD <i class="fa-regular fa-paper-plane"></i>';btn.disabled=false;
+  },700);
+});
+$('#sendAnother').onclick=()=>{
+  $('#contactForm').reset();$('#charCount').textContent='0 / 500';
+  $('#successView').classList.remove('show');$('#formView').style.display='block';
+  window.scrollTo({top:document.getElementById('contact').offsetTop-90,behavior:'smooth'});
+};
+</script>
+</body>
+</html>
